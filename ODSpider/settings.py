@@ -9,17 +9,18 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'ODSpider'
+BOT_NAME = 'ODSpider'  # 与自己实现的爬虫类中的name属性一致
 
 SPIDER_MODULES = ['ODSpider.spiders']
 NEWSPIDER_MODULE = 'ODSpider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ODSpider (+http://www.yourdomain.com)'
+# USER_AGENT = 'ODSpider (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -64,9 +65,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'ODSpider.pipelines.OdspiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'ODSpider.pipelines.OdspiderPipeline': 300,
+   'ODSpider.pipelines.OdspiderSqlPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -94,5 +96,3 @@ MYSQL_NAME = 'spider'         # 数据库名字
 MYSQL_USER = 'root'             # 数据库账号
 MYSQL_PWD = '123456'         # 数据库密码
 MYSQL_PORT = 3306               # 数据库端口
-
-BOT_NAME = 'ODSpider'  #与自己实现的爬虫类中的name属性一致

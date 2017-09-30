@@ -34,11 +34,11 @@ class ZolSpider(scrapy.spiders.Spider):
                 titles = se.xpath("//ul[@class='pic-list2  clearfix']/li[%d]/a/img/@title"%i).extract()
 
                 if img_url:
-                    real_url = img_url[0].replace("t_s208x130c5","t_s2560x1600c5")
+                    real_url = img_url[0].replace("t_s208x130c5", "t_s2560x1600c5")
                     file_name = u"%s.jpg" % titles[0]  # 要保存文件的命名
 
                     path = os.path.join("F:\logs", file_name)  # 拼接这个图片的路径，我是放在F盘的pics文件夹下
-                    type = sys.getfilesystemencoding()
+                    type = 'utf-8'
                     print file_name.encode(type)
 
                     item = ZolItem()  # 实例item（具体定义的item类）,将要保存的值放到事先声明的item属性中
@@ -48,9 +48,9 @@ class ZolSpider(scrapy.spiders.Spider):
 
                     yield item  # 返回item,这时会自定解析item
 
-                    urllib.urlretrieve(real_url, path)
+                    # urllib.urlretrieve(real_url, path)
 
                 all_urls = se.xpath("//a/@href").extract()  # 提取界面所有的url
                 for url in all_urls:
-                    if url.startswith("/fengjing/1920x1080/"):  # 若是满足定义的条件，继续爬取
-                        yield Request("http://desk.zol.com.cn" + url, callback=self.parse)
+                    # if url.startswith("/fengjing/1920x1080/"):  # 若是满足定义的条件，继续爬取
+                    self.parse("http://desk.zol.com.cn" + url)
