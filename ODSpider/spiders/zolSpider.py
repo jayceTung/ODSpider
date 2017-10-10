@@ -2,12 +2,7 @@
 # -*- coding: UTF-8 -*-
 import re
 
-import os
-import urllib
-from urllib2 import Request
-
 import scrapy
-import sys
 from scrapy import Selector
 
 from ODSpider.item.zolitems import ZolItem
@@ -37,14 +32,15 @@ class ZolSpider(scrapy.spiders.Spider):
                     real_url = img_url[0].replace("t_s208x130c5", "t_s2560x1600c5")
                     file_name = u"%s.jpg" % titles[0]  # 要保存文件的命名
 
-                    path = os.path.join("F:\logs", file_name)  # 拼接这个图片的路径，我是放在F盘的pics文件夹下
-                    type = 'utf-8'
-                    print file_name.encode(type)
+                    # path = os.path.join("F:\logs", file_name)  # 拼接这个图片的路径，我是放在F盘的pics文件夹下
+                    # type = 'utf-8'
+                    # print file_name.encode(type)
 
                     item = ZolItem()  # 实例item（具体定义的item类）,将要保存的值放到事先声明的item属性中
-                    item['name'] = file_name
+                    item['name'] = file_name.encode('utf-8')
                     item['url'] = real_url
-                    print item["name"], item["url"]
+                    print item["name"]
+                    print item["url"]
 
                     yield item  # 返回item,这时会自定解析item
 

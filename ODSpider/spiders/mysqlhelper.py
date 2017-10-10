@@ -90,7 +90,7 @@ class DBHelper:
         conn.close()
 
 
-class Test:
+class Example:
 
     def __init__(self):
         self.dbHelper = DBHelper()
@@ -109,7 +109,7 @@ class Test:
 
 
 if __name__ == '__main__':
-    test = Test()
+    exam = Example()
     # test.test_create_database()
-    # test.test_create_table()
-    test.test_insert()
+    exam.test_create_table()
+    # exam.test_insert()
